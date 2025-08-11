@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 
 
-const DB_PATH = "mongodb+srv://rana_ajay14:rana_ajay14@codewithjs.a0vhajb.mongodb.net/airbnbMongo?retryWrites=true&w=majority&appName=CodeWithJs";
+const DB_PATH = "mongodb+srv://<username>:<password>@codewithjs.a0vhajb.mongodb.net/airbnbMongo?retryWrites=true&w=majority&appName=CodeWithJs";
 
 //Local Module
 const storeRouter = require("./routes/storeRouter")
