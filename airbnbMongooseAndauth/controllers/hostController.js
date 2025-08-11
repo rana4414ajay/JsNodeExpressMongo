@@ -1,4 +1,5 @@
 const Home = require("../models/home");
+const fs = require('fs');
 
 exports.getAddHome = (req, res, next) => {
   res.render("host/edit-home", {
@@ -45,8 +46,12 @@ exports.getHostHomes = (req, res, next) => {
 };
 
 exports.postAddHome = (req, res, next) => {
-  const { homeName, price, location, rating, photoUrl, description } = req.body;
-  const home = new Home({ homeName, price, location, rating, photoUrl, description });
+  const { homeName, price, location, rating, description } = req.body;
+  if (!req.file) {
+    return res.status(400).send("No file uploaded");
+  }
+  const photo = req.file.path; // Assuming multer saves the file and provides the path
+  const home = new Home({ homeName, price, location, rating, photo, description });
   home.save().then(() => {
     console.log("Home added successfully");
   });
@@ -54,14 +59,22 @@ exports.postAddHome = (req, res, next) => {
 };
 
 exports.postEditHome = (req, res, next) => {
-  const { id, homeName, price, location, rating, photoUrl, description } = req.body;
+  const { id, homeName, price, location, rating, description } = req.body;
   Home.findById(id).then(home => {
     home.homeName = homeName;
     home.price = price;
     home.location = location;
     home.rating = rating;
-    home.photoUrl = photoUrl;
     home.description = description;
+
+    if (req.file) {
+      fs.unlink(home.photo, (err) => {
+        if (err) {
+          console.error("Error deleting old photo:", err);
+        }
+      });
+      home.photo = req.file.path; // Update photo if a new file is uploaded
+    }
     home.save().then((result) => {
       console.log("Home updated successfully", result);
     }).catch(error => {
