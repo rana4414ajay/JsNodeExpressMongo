@@ -1,0 +1,70 @@
+<header class="bg-gradient-to-r from-red-500 via-pink-500 to-red-400 text-white py-4 shadow-xl">
+  <nav class="container mx-auto flex justify-between items-center">
+    <!-- Logo & Brand -->
+    <div class="flex items-center space-x-2">
+      <span class="bg-white rounded-full p-2 shadow">
+        <!-- Improved Home Icon -->
+        <svg class="w-8 h-8 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 10v10a2 2 0 002 2h3m6 0h3a2 2 0 002-2V10" />
+          <rect x="9" y="14" width="6" height="6" rx="2" fill="currentColor" class="text-red-400" />
+        </svg>
+      </span>
+      <span
+        class="text-2xl font-extrabold tracking-wide drop-shadow-lg hover:text-white flex items-center space-x-1">airbnb</span>
+
+    </div>
+    <!-- Navigation Links -->
+    <ul class="flex space-x-2 md:space-x-4 items-center">
+      <% if(isLoggedIn) { %>
+        <% if(user && user.userType==='guest' ) { %>
+          <li>
+            <a href="/"
+              class="<%= currentPage === 'Home' ? 'bg-white text-red-500' : 'hover:bg-white hover:text-red-500' %> py-2 px-4 rounded-lg font-semibold transition duration-300 shadow-sm">Home</a>
+          </li>
+          <li>
+            <a href="/homes"
+              class="<%= currentPage === 'Home' ? 'bg-white text-red-500' : 'hover:bg-white hover:text-red-500' %> py-2 px-4 rounded-lg font-semibold transition duration-300 shadow-sm">Homes-List</a>
+          </li>
+          <li>
+            <a href="/favourites"
+              class="<%= currentPage === 'favourites' ? 'bg-white text-red-500' : 'hover:bg-white hover:text-red-500' %> py-2 px-4 rounded-lg font-semibold transition duration-300 shadow-sm">Favourites</a>
+          </li>
+          <li>
+            <a href="/bookings"
+              class="<%= currentPage === 'bookings' ? 'bg-white text-red-500' : 'hover:bg-white hover:text-red-500' %> py-2 px-4 rounded-lg font-semibold transition duration-300 shadow-sm">Bookings</a>
+          </li>
+          <% } else { %>
+            <li>
+              <a href="/host/host-home-list"
+                class="<%= currentPage === 'host-homes' ? 'bg-white text-red-500' : 'hover:bg-white hover:text-red-500' %> py-2 px-4 rounded-lg font-semibold transition duration-300 shadow-sm">Host
+                Homes</a>
+            </li>
+            <li>
+              <a href="/host/add-home"
+                class="<%= currentPage === 'addHome' ? 'bg-white text-red-500' : 'hover:bg-white hover:text-red-500' %> py-2 px-4 rounded-lg font-semibold transition duration-300 shadow-sm">Add
+                Home</a>
+            </li>
+            <% } %>
+              <% } %>
+                <% if (!isLoggedIn) { %>
+                  <li>
+                    <a href="/signup"
+                      class="bg-white text-red-500 hover:bg-red-600 hover:text-white py-2 px-6 rounded-lg shadow-lg transition duration-300 font-semibold">Sign
+                      Up</a>
+                  </li>
+                  <li>
+                    <a href="/login"
+                      class="bg-white text-red-500 hover:bg-red-600 hover:text-white py-2 px-6 rounded-lg shadow-lg transition duration-300 font-semibold">Login</a>
+                  </li>
+                  <% } else { %>
+                    <li>
+                      <form action="/logout" method="POST">
+                        <button type="submit"
+                          class="bg-white text-red-500 hover:bg-red-600 hover:text-white py-2 px-6 rounded-lg shadow-lg transition duration-300 font-semibold">Logout</button>
+                      </form>
+                    </li>
+                    <% } %>
+    </ul>
+  </nav>
+</header>

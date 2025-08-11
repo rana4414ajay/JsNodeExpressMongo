@@ -1,0 +1,137 @@
+<%- include('../partials/head') %>
+    </head>
+
+    <body class="bg-gradient-to-br from-red-100 via-white to-blue-100 min-h-screen">
+        <%- include('../partials/nav') %>
+            <main class="container mx-auto mt-16 p-8 bg-white rounded-2xl shadow-2xl max-w-lg">
+                <h1 class="text-4xl font-extrabold text-center text-gray-900 mb-2">
+                    Register as a New User
+                </h1>
+                <p class="text-gray-500 mb-8 text-center">Create your account to get started!</p>
+                <form action="/signup" method="POST" class="space-y-6">
+                        <%- include('../partials/error') %>
+                            <!-- First Name -->
+                            <div>
+                                <label for="firstName" class="block text-gray-700 font-semibold mb-2">First Name</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2.5 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M5.121 17.804A9.003 9.003 0 0112 15c2.21 0 4.244.805 5.879 2.146M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input type="text" name="firstName" id="firstName" placeholder="First Name"
+                                        value="<%= oldInput.firstName ? oldInput.firstName : '' %>"
+                                        class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+                                        required />
+                                </div>
+                            </div>
+                            <!-- Last Name -->
+                            <div>
+                                <label for="lastName" class="block text-gray-700 font-semibold mb-2">Last Name</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2.5 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M5.121 17.804A9.003 9.003 0 0112 15c2.21 0 4.244.805 5.879 2.146M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input type="text" name="lastName" id="lastName" placeholder="Last Name"
+                                        value="<%= oldInput.lastName ? oldInput.lastName : '' %>"
+                                        class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400" />
+                                </div>
+                            </div>
+                            <!-- Email -->
+                            <div>
+                                <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2.5 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M16 12H8m8 0a4 4 0 01-8 0m8 0v1a4 4 0 01-8 0V12"></path>
+                                        </svg>
+                                    </span>
+                                    <input type="email" name="email" id="email" placeholder="Email"
+                                        value="<%= oldInput.email ? oldInput.email : '' %>"
+                                        class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+                                        required />
+                                </div>
+                            </div>
+                            <!-- Password -->
+                            <div>
+                                <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2.5 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zm0 0v2m0 4h.01">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input type="password" name="password" id="password"
+                                        placeholder="Enter your Password"
+                                        class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+                                        required />
+                                </div>
+                            </div>
+                            <!-- Confirm Password -->
+                            <div>
+                                <label for="confirmPassword" class="block text-gray-700 font-semibold mb-2">Confirm
+                                    Password</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2.5 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zm0 0v2m0 4h.01">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input type="password" name="confirmPassword" id="confirmPassword"
+                                        placeholder="Confirm your Password"
+                                        class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+                                        required />
+                                </div>
+                            </div>
+                            <!-- User Type Selection -->
+                            <div>
+                                <span class="block text-gray-700 font-semibold mb-2">User Type</span>
+                                <div class="flex space-x-6">
+                                    <label for="guest" class="flex items-center cursor-pointer">
+                                        <input type="radio" name="userType" value="guest" id="guest"
+                                            class="mr-2 accent-red-500"
+                                            checked="<%= oldInput.userType === 'guest' %>" />
+                                        <span>Guest</span>
+                                    </label>
+                                    <label for="host" class="flex items-center cursor-pointer">
+                                        <input type="radio" name="userType" value="host" id="host"
+                                            class="mr-2 accent-blue-500"
+                                            checked="<%= oldInput.userType === 'host' %>" />
+                                        <span>Host</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Terms and Conditions -->
+                            <div>
+                                <label for="terms" class="flex items-center cursor-pointer">
+                                    <input type="checkbox" name="terms" id="terms" class="mr-2 accent-green-500"
+                                        required />
+                                    <span>I agree to the terms and conditions</span>
+                                </label>
+                            </div>
+                            <!-- Submit Button -->
+                            <button type="submit"
+                                class="w-full bg-gradient-to-r from-red-500 via-pink-500 to-red-600 text-white py-3 rounded-lg font-bold hover:scale-105 hover:shadow-xl transition duration-300 shadow">
+                                Register
+                            </button>
+                </form>
+            </main>
+    </body>
+
+    </html>

@@ -1,0 +1,14 @@
+<% if(errors.length> 0) { %>
+    <div class="mb-4 border-2 p-2 rounded-lg bg-red-100 border-red-300">
+        <span class="font-semibold text-red-700">
+            <h1>Error:-</h1>
+        </span>
+        <ul class="list-disc list-inside text-red-600">
+            <% errors.forEach(function(error) { %>
+                <li>
+                    <%= error %>
+                </li>
+                <% }); %>
+        </ul>
+    </div>
+    <% } %>
